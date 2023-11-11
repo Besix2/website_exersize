@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <html lang="en">
+    <title> My Page </title>
+    <style>
+        body {
+            background-color: rgb(107, 107, 107);
+            font-size: 30px;
+            margin: auto;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header {
+            background-color: #282a35;
+            padding: 5px;
+            border-bottom: 4px solid;
+            display: flex;
+
+        }
+
+        .nav {
+            color: white;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .nav:hover {
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+        }
+
+        .wrapper {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            background-color: beige;
+            padding: 100px;
+        }
+
+        .content {
+            
+            width: 350px;
+            height: 500px;
+            background-color: lightblue;
+            margin: 0 90px;
+            border: 3px solid #000000;
+            overflow: auto;
+            font-size: 20px;
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+        }
+        .content p {
+            height: 520px;
+        }
+        .button {
+            background-color: #46d124;
+            padding: 21px;
+            height: 30px;
+            margin-top: 350px;
+            width: 110px;
+            border: 3px solid black;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .button:hover {
+            background-color: #49eb21;
+        }
+        .run {
+            padding: 0;
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+            
+    </style>
+    <script>
+        fetch('/payload.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('textDisplay').innerText = data;
+            });
+            function updateText() {
+                var text = document.getElementById('textDisplay').innerText;
+            }
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="nav"><a href="{{ url_for('Home') }}">Home</a></div>
+        <div class="nav"><a href="{{ url_for('scripts') }}">Scripts</a></div>
+        <div class="nav"><a href="{{ url_for('data') }}">Data</a></div>
+    </header>
+    <div class="wrapper">
+        <div class="content">
+        </div>
+        <button class="button" onclick="python()">
+            <p class="run">run</p>
+        </button>
+        <div class="content" contenteditable="true" oninput="updateText()">
+            <p id="textDisplay"></p>
+        </div>
+        
+    
+    </div>
+    
+</body>
+
+</html>
